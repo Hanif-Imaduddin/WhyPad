@@ -1,4 +1,4 @@
-#include "entity.h"
+#include "../Header/entity.h"
 
 namespace COL{
     Col * create(char c){
