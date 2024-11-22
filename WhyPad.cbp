@@ -32,7 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="Header/entity.h" />
+		<Unit filename="Source/entity.cpp" />
+		<Unit filename="Source/main.cpp" />
+		<Unit filename="Testing/test_normal_mode.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
