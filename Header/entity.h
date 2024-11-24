@@ -5,43 +5,104 @@
 
 using namespace std;
 
-namespace COL{
-    struct Col{
-        char info;
-        Col *next,*prev,*top,*bot;
-    };
-    Col * create(char c);
-}
 
 namespace ROW{
-    struct Row{
-        COL::Col *first;
-        int length;
-        Row *next,*prev;
+    typedef char infotype;
+    typedef struct elm * Address;
+    struct elm{
+        infotype info;
+        Address next,prev;
     };
-    Row * create();
-    void print(Row R);
+    struct Row{
+        Address first,last;
+        int length;
+    };
+    Address createElm(char c);
+    Row create();
+    void print(Row R,CURSOR::Cursor c);
+}
+
+namespace CURSOR{
+    struct Cursor{
+        ROW::Address ptr;
+        int row_idx,col_idx;
+    };
+    Cursor create();
 }
 
 namespace FILE{
+    typedef ROW::Row infotype;
+    typedef struct elm * Address;
+    struct elm{
+        infotype info;
+        Address next,prev;
+    };
     struct File{
-        ROW::Row *first;
+        Address first,last;
         string name;
         int length;
-        File *next;
     };
-    File * create(string name);
+    Address createElm();
+    File create(string name);
     void print(File F);
 }
 
 namespace FOLDER{
+    typedef FILE::File infotype;
+    typedef struct elm * Address;
+    struct elm{
+        infotype info;
+        Address next;
+    };
     struct Folder{
-        FILE::File *first;
+        Address first;
+        string name;
         int length;
     };
-    Folder create();
+    Address createElm(string name);
+    Folder create(string name);
     void print(Folder F);
 }
 
+namespace SOA{ //SOA = Stack Of Element Address
+    typedef ROW::elm * infotype;
+    struct Stack{
+        infotype info[10];
+        int top;
+    };
+    Stack create();
+
+    bool isFull(Stack S);
+    bool isEmpty(Stack S);
+    void push(Stack &S,infotype p);
+    void pop(Stack &S,infotype &p);
+    infotype peek(Stack S);
+}
+
+namespace LOG{
+    struct Log{
+        bool isInsertion;
+        ROW::Address ptr;
+    };
+    Log create();
+}
+
+namespace SOL{ // SOL = Stack Of Log
+    typedef LOG::Log infotype;
+    typedef struct ElmStack * Address;
+
+    struct ElmStack{
+        infotype info;
+        Address next;
+    };
+    struct Stack{
+        Address top;
+    };
+    Stack create();
+    bool isEmpty(Stack S);
+    void push(Stack &S, Address p);
+    void pop(Stack &S, Address &p);
+    Address peek(Stack S);
+}
 
 #endif // ENTITY_H_INCLUDED
