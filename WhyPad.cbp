@@ -33,8 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Header/entity.h" />
+		<Unit filename="Header/normal_mode.h" />
 		<Unit filename="Source/entity.cpp" />
 		<Unit filename="Source/main.cpp" />
+		<Unit filename="Source/normal_mode.cpp" />
 		<Unit filename="Testing/test_normal_mode.cpp" />
 		<Extensions />
 	</Project>

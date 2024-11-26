@@ -1,108 +1,83 @@
 #ifndef ENTITY_H_INCLUDED
 #define ENTITY_H_INCLUDED
 #include <iostream>
+#include <cmath>
 #define NIL NULL
 
 using namespace std;
 
+struct elmRow{
+    char info;
+    elmRow *next,*prev;
+};
+struct Row{
+    elmRow *first,*last;
+    int length;
+};
 
-namespace ROW{
-    typedef char infotype;
-    typedef struct elm * Address;
-    struct elm{
-        infotype info;
-        Address next,prev;
-    };
-    struct Row{
-        Address first,last;
-        int length;
-    };
-    Address createElm(char c);
-    Row create();
-    void print(Row R,CURSOR::Cursor c);
-}
+struct Cursor{
+    elmRow *cell_ptr;
+    elmFile *row_ptr;
+    elmFolder *file_ptr;
+};
 
-namespace CURSOR{
-    struct Cursor{
-        ROW::Address ptr;
-        int row_idx,col_idx;
-    };
-    Cursor create();
-}
+struct elmFile{
+    Row info;
+    elmFile *next,*prev;
+};
+struct File{
+    elmFile *first,*last;
+    int length;
+    string name;
+};
+struct elmFolder{
+    File info;
+    elmFolder *next;
+};
+struct Folder{
+    elmFile *first;
+    int length;
+    string name;
+};
 
-namespace FILE{
-    typedef ROW::Row infotype;
-    typedef struct elm * Address;
-    struct elm{
-        infotype info;
-        Address next,prev;
-    };
-    struct File{
-        Address first,last;
-        string name;
-        int length;
-    };
-    Address createElm();
-    File create(string name);
-    void print(File F);
-}
+elmRow* createElmRow(char info);
+Row createRow();
 
-namespace FOLDER{
-    typedef FILE::File infotype;
-    typedef struct elm * Address;
-    struct elm{
-        infotype info;
-        Address next;
-    };
-    struct Folder{
-        Address first;
-        string name;
-        int length;
-    };
-    Address createElm(string name);
-    Folder create(string name);
-    void print(Folder F);
-}
+elmFile* createElmFile(Row R);
+File createFile(string name);
 
-namespace SOA{ //SOA = Stack Of Element Address
-    typedef ROW::elm * infotype;
-    struct Stack{
-        infotype info[10];
-        int top;
-    };
-    Stack create();
+elmFolder* createElmFolder(File F);
+Folder createFolder(string folder_name);
 
-    bool isFull(Stack S);
-    bool isEmpty(Stack S);
-    void push(Stack &S,infotype p);
-    void pop(Stack &S,infotype &p);
-    infotype peek(Stack S);
-}
+struct Clipboard{ // Stack
+    string info[10];
+    int height,top;
+};
+bool isFullClipboard(Clipboard C);
+bool isEmptyClipboard(Clipboard C);
+void pushClipboard(Clipboard &C,string p);
+void popClipboard(Clipboard &C,string &p);
+string peek(Clipboard C);
 
-namespace LOG{
-    struct Log{
-        bool isInsertion;
-        ROW::Address ptr;
-    };
-    Log create();
-}
 
-namespace SOL{ // SOL = Stack Of Log
-    typedef LOG::Log infotype;
-    typedef struct ElmStack * Address;
-
-    struct ElmStack{
-        infotype info;
-        Address next;
-    };
-    struct Stack{
-        Address top;
-    };
-    Stack create();
-    bool isEmpty(Stack S);
-    void push(Stack &S, Address p);
-    void pop(Stack &S, Address &p);
-    Address peek(Stack S);
-}
+/* Instruction code: {Delete row elements: 0, Insert row elemen: 1, Delete Row: 3,
+Insert Row: 4,delete file: 5, insert file: 6}*/
+struct Log{
+    int instruction_code;
+    string info; // Berisi info elemen yang dihapus jika delete/insert elemen
+    elmFolder *file_address; // Berisi elemen folder jika delete/insert file
+    elmFile *row_address; // Berisi elemen file jika delete/insert row
+    int row_idx,col_idx; // Row id menyesuaikan instruction code
+};
+struct elmStackOfLog{
+    Log info;
+    elmStackOfLog *next;
+};
+struct StackOfLog{
+    elmStackOfLog *top;
+};
+Log createLog(int instruction_code,string info, elmFolder *file_address,elmFile *row_address,int row_idx,int col_idx);
+elmStackOfLog* createElmStackOfLog(Log L);
+StackOfLog createStackOfLog();
 
 #endif // ENTITY_H_INCLUDED
