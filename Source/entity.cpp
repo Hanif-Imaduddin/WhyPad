@@ -1,179 +1,112 @@
 #include "../Header/entity.h"
 
-namespace ROW{
-    Address createElm(char c){
-        Address p;
-        p = new elm;
-        p->info = c;
-        p->next = NIL;
-        p->prev = NIL;
-        return p;
+elmRow* createElmRow(char info){
+    elmRow *p;
+    p = new elmRow;
+    p->info = info;
+    p->next = NIL;
+    p->prev = NIL;
+    return p;
+}
+Row createRow(){
+    Row R;
+    R.first = NIL;
+    R.last = NIL;
+    R.length = 0;
+    return R;
+}
+
+elmFile* createElmFile(Row R){
+    elmFile *p;
+    p = new elmFile;
+    p->info = R;
+    p->next = NIL;
+    p->prev = NIL;
+    return p;
+}
+
+Cursor createCursor(){
+    Cursor C;
+    C.cell_ptr = NIL;
+    C.row_ptr = NIL;
+    C.file_ptr = NIL;
+    return C;
+}
+
+File createFile(string name){
+    File F;
+    F.first = NIL;
+    F.last = NIL;
+    F.length = 0;
+    F.name = name;
+}
+
+elmFolder* createElmFolder(File F){
+    elmFolder *p;
+    p = new elmFolder;
+    p->info = F;
+    p->next = NIL;
+    return p;
+}
+Folder createFolder(string folder_name){
+    Folder F;
+    F.first = NIL;
+    F.length = 0;
+    F.name = folder_name;
+}
+
+/*-------------- Clipboard --------------*/
+
+bool isFullClipboard(Clipboard C){
+    return C.height == 10;
+}
+bool isEmptyClipboard(Clipboard C){
+    return C.height == 0;
+}
+void pushClipboard(Clipboard &C,string p){
+    C.info[C.top] = p;
+    C.top = (C.top+1)%5;
+    if (!isFullClipboard(C)){
+        C.height++;
     }
-    Row create(){
-        Row R;
-        R.first = NIL;
-        R.last = NIL;
-        R.length = 0;
-        return R;
-    }
-    void print(Row R,CURSOR::Cursor c){
-        Address p;
-        p = R.first;
-        while (p != NIL){
-            cout<<p->info;
-            if (p == c){
-                cout<<'|';
-            }
-            p = p->next;
-        }
-        cout<<endl;
+}
+void popClipboard(Clipboard &C,string &p){
+    if (!isEmptyClipboard(C)){
+        C.top = (C.top-1)-10*floor(double(C.top-1)/double(10));
+        p = C.info[C.top];
+        C.height--;
     }
 }
 
-namespace CURSOR{
-    Cursor create(){
-        Cursor C;
-        C.ptr = NIL;
-        C.col_idx = -1;
-        C.row_idx = -1;
-        return C;
-    }
+string peek(Clipboard C){
+    return C.info[(C.top-1)-10*floor(double(C.top-1)/double(10))];
 }
 
-namespace FILE{
-    Address createElm(){
-        Address p;
-        p = new elm;
-        p->info = ROW::create();
-        p->next = NIL;
-        p->prev = NIL;
-        return p;
-    }
-    File create(string name){
-        File F;
-        F.first = NIL;
-        F.last = NIL;
-        F.length = 0;
-        F.name = name;
-        return F;
-    }
-    void print(File F,CURSOR::Cursor c){
-        Address p;
-        p = F.first;
-        while (p != NIL){
-            ROW::print(p->info,c));
-        }
-    }
+
+/*-------------- Stack Of Log --------------*/
+
+Log createLog(int instruction_code,string info, elmFolder *file_address,elmFile *row_address,int row_idx,int col_idx){
+    Log L;
+    L.instruction_code = instruction_code
+    L.info = info;
+    L.file_address = file_address;
+    L.row_address = row_address;
+    L.row_idx = row_idx;
+    L.col_idx = col_idx;
+
+    return L;
 }
+elmStackOfLog* createElmStackOfLog(Log L){
+    elmStackOfLog *p;
+    p = new elmStackOfLog;
+    p->info = L;
+    p->next = NIL;
 
-namespace FOLDER{
-    typedef FILE::File infotype;
-    typedef struct elm * Address;
-    struct elm{
-        infotype info;
-        Address next;
-    };
-    struct Folder{
-        Address first;
-        string name;
-        int length;
-    };
-    Address createElm(string name){
-        Address p;
-        p = new elm;
-        p->info = FILE::create(name);
-        p->next = NIL;
-        return p;
-    }
-    Folder create(string name){
-        Folder F;
-        F.first = NIL;
-        F.length = 0;
-        F.name = name;
-        return F;
-    }
-    void print(Folder F){
-        int i;
-        Address p;
-        p = F.first;
-        i = 1;
-        while (p != NIL){
-            cout<<i<<". "<<p->info.name<<endl;
-            p = p->
-        }
-    }
+    return p;
 }
-namespace SOA{ //SOA = Stack Of Element Address
-    Stack create(){
-        Stack S;
-        S.top = 0;
-        return S;
-    }
+StackOfLog createStackOfLog(){
+    StackOfLog S;
+    S.top = NIL;
 
-    bool isFull(Stack S){
-        return S.top == 10;
-    }
-    bool isEmpty(Stack S){
-        return S.top == 0;
-    }
-    void push(Stack &S,infotype p){
-        if (!isFull(S)){
-            S.info[S.top] = p;
-            S.top++;
-        }
-    }
-    void pop(Stack &S,infotype &p){
-        if (!isEmpty(S)){
-            S.top--;
-            p = S.info[S.top];
-        }else{
-            p = NIL;
-        }
-    }
-    infotype peek(Stack S){
-        return S.info[S.top-1];
-    }
-}
-
-namespace LOG{
-    Log create(bool isInsertion, ROW::Address first){
-        Log l;
-        l.isInsertion = isInsertion;
-        l.ptr = first;
-    }
-}
-
-namespace SOL{ // SOL = Stack Of Log
-    typedef LOG::Log infotype;
-    typedef struct ElmStack * Address;
-
-    struct ElmStack{
-        infotype info;
-        Address next;
-    };
-    struct Stack{
-        Address top;
-    };
-    Stack create(){
-        Stack S;
-        S.top = NIL;
-        return S;
-    }
-    bool isEmpty(Stack S){
-        return S.top == NIL;
-    }
-    void push(Stack &S, Address p){ // Insert first
-        p->next = S.top;
-        S.top = p;
-    }
-    void pop(Stack &S, Address &p){
-        p = S.top;
-        if (!isEmpty(S)){
-            S.top = S.top->next;
-            p->next = NIL;
-        }
-    }
-    Address peek(Stack S){
-        return S.top;
-    }
+    return S;
 }
