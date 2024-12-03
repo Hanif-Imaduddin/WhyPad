@@ -1,6 +1,7 @@
 #ifndef NORMAL_MODE_H_INCLUDED
 #define NORMAL_MODE_H_INCLUDED
 #include "entity.h"
+#include "standard.h"
 
 void swipeRight(Cursor &C,int n);
 void swipeLeft(Cursor &C,int n);

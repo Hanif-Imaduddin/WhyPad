@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1732120029 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
+	<iostream>
+
+1732276171 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\testing\test_normal_mode.cpp
+
+1732691078 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\normal_mode.cpp
+	"../Header/normal_mode.h"
+
+1732690455 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\normal_mode.h
+	"entity.h"
+	"standard.h"
+
+1733248219 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
+	<iostream>
+	<cmath>
+
+1733247974 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
+	"entity.h"
+	<iostream>
+
+1733246305 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
+	"../Header/entity.h"
+
+1733246430 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
+	"../Header/standard.h"
+
