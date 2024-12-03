@@ -79,20 +79,21 @@ void popClipboard(Clipboard &C,string &p){
 }
 
 string peek(Clipboard C){
-    return C.info[(C.top-1)-10*floor(double(C.top-1)/double(10))];
+    int tempTop;
+    tempTop = (C.top-1)-10*floor(double(C.top-1)/double(10));
+    return C.info[tempTop];
 }
 
 
 /*-------------- Stack Of Log --------------*/
 
-Log createLog(int instruction_code,string info, elmFolder *file_address,elmFile *row_address,int row_idx,int col_idx){
+Log createLog(int instruction_code,elmFolder* file_ptr,elmFile *row_ptr,elmRow *start_ptr,elmRow *end_ptr){
     Log L;
-    L.instruction_code = instruction_code
-    L.info = info;
-    L.file_address = file_address;
-    L.row_address = row_address;
-    L.row_idx = row_idx;
-    L.col_idx = col_idx;
+    L.instruction_code = instruction_code;
+    L.file_ptr = file_ptr;
+    L.row_ptr = row_ptr;
+    L.start_ptr = start_ptr;
+    L.end_ptr = end_ptr;
 
     return L;
 }

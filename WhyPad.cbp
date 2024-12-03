@@ -34,9 +34,11 @@
 		</Compiler>
 		<Unit filename="Header/entity.h" />
 		<Unit filename="Header/normal_mode.h" />
+		<Unit filename="Header/standard.h" />
 		<Unit filename="Source/entity.cpp" />
 		<Unit filename="Source/main.cpp" />
 		<Unit filename="Source/normal_mode.cpp" />
+		<Unit filename="Source/standard.cpp" />
 		<Unit filename="Testing/test_normal_mode.cpp" />
 		<Extensions />
 	</Project>

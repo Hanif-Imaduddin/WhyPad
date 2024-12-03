@@ -89,5 +89,27 @@ void copyChar(File F,Clipboard &CB,int row_idx,int start_idx,int end_idx){
 }
 
 void pasteChar(File F,Clipboard &CB, Cursor &C){
-
+    elmRow *start_ptr,*end_ptr;
+    string str;
+    if (!isEmptyClipboard(CB)){
+        popClipboard(CB,str);
+        stringToAddress(str,start_ptr,end_ptr);
+        if (C.cell_ptr != NIL){
+            end_ptr->next = C.cell_ptr->next;
+            if (C.cell_ptr->next != NIL){
+                C.cell_ptr->next->prev = end_ptr;
+            }
+            C.cell_ptr->next = start_ptr;
+            start_ptr->prev = C.cell_ptr;
+            C.cell_ptr = start_ptr;
+        }else{
+            if (C.row_ptr->info.first == NIL){
+                C.row_ptr->info.first = start_ptr;
+            }else{
+                end_ptr->next = C.row_ptr->info.first;
+                C.row_ptr->info.first->prev = end_ptr;
+                C.row_ptr->info.first = start_ptr;
+            }
+        }
+    }
 }

@@ -4,7 +4,12 @@
 #include <cmath>
 #define NIL NULL
 
+
 using namespace std;
+
+typedef struct elmRow * address_of_row;
+typedef struct elmFile * address_of_file;
+typedef struct elmFolder * address_of_folder;
 
 struct elmRow{
     char info;
@@ -13,12 +18,6 @@ struct elmRow{
 struct Row{
     elmRow *first,*last;
     int length;
-};
-
-struct Cursor{
-    elmRow *cell_ptr;
-    elmFile *row_ptr;
-    elmFolder *file_ptr;
 };
 
 struct elmFile{
@@ -33,6 +32,11 @@ struct File{
 struct elmFolder{
     File info;
     elmFolder *next;
+};
+struct Cursor{
+    elmRow *cell_ptr;
+    elmFile *row_ptr;
+    elmFolder *file_ptr;
 };
 struct Folder{
     elmFile *first;
@@ -64,10 +68,9 @@ string peek(Clipboard C);
 Insert Row: 4,delete file: 5, insert file: 6}*/
 struct Log{
     int instruction_code;
-    string info; // Berisi info elemen yang dihapus jika delete/insert elemen
-    elmFolder *file_address; // Berisi elemen folder jika delete/insert file
-    elmFile *row_address; // Berisi elemen file jika delete/insert row
-    int row_idx,col_idx; // Row id menyesuaikan instruction code
+    elmFolder* file_ptr;
+    elmFile* row_ptr;
+    elmRow *start_ptr,*end_ptr;
 };
 struct elmStackOfLog{
     Log info;
@@ -76,7 +79,7 @@ struct elmStackOfLog{
 struct StackOfLog{
     elmStackOfLog *top;
 };
-Log createLog(int instruction_code,string info, elmFolder *file_address,elmFile *row_address,int row_idx,int col_idx);
+Log createLog(int instruction_code,elmFolder* file_ptr,elmFile *row_ptr,elmRow *start_ptr,elmRow *end_ptr);
 elmStackOfLog* createElmStackOfLog(Log L);
 StackOfLog createStackOfLog();
 
