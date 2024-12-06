@@ -1,27 +1,47 @@
 # depslib dependency file v1.0
-1732120029 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
+1733287009 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
 	<iostream>
+	"../Header/standard.h"
+	"../Header/dummy_file.h"
+	"../Header/insert_mode.h"
 
 1732276171 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\testing\test_normal_mode.cpp
 
-1732691078 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\normal_mode.cpp
+1733291025 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\normal_mode.cpp
 	"../Header/normal_mode.h"
 
 1732690455 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\normal_mode.h
 	"entity.h"
 	"standard.h"
 
-1733248219 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
+1733291025 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
 	<iostream>
 	<cmath>
 
-1733247974 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
+1733272426 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
 	"entity.h"
 	<iostream>
 
-1733246305 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
+1733291025 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
 	"../Header/entity.h"
 
-1733246430 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
+1733272768 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
 	"../Header/standard.h"
+
+1733272273 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\dummy_file.cpp
+	"../Header/dummy_file.h"
+
+1733272215 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\dummy_file.h
+	"entity.h"
+	"standard.h"
+
+1733291140 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\insert_mode.cpp
+	"../Header/insert_mode.h"
+
+1733278250 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\testing\test_dummy_file.cpp
+
+1733286770 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\insert_mode.h
+	<iostream>
+	"entity.h"
+	"standard.h"
 

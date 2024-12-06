@@ -7,9 +7,9 @@
 
 using namespace std;
 
-typedef struct elmRow * address_of_row;
-typedef struct elmFile * address_of_file;
-typedef struct elmFolder * address_of_folder;
+typedef struct elmRow * address_of_row; //pointer to element row
+typedef struct elmFile * address_of_file; //pointer to element file
+typedef struct elmFolder * address_of_folder; //pointer to element folder
 
 struct elmRow{
     char info;
@@ -39,7 +39,7 @@ struct Cursor{
     elmFolder *file_ptr;
 };
 struct Folder{
-    elmFile *first;
+    elmFolder *first;
     int length;
     string name;
 };
