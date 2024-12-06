@@ -1,6 +1,7 @@
 #include "../Header/entity.h"
 
 elmRow* createElmRow(char info){
+    //create new ElmRow
     elmRow *p;
     p = new elmRow;
     p->info = info;
@@ -9,6 +10,7 @@ elmRow* createElmRow(char info){
     return p;
 }
 Row createRow(){
+    //create new row
     Row R;
     R.first = NIL;
     R.last = NIL;
@@ -17,6 +19,7 @@ Row createRow(){
 }
 
 elmFile* createElmFile(Row R){
+    //create new elmFila
     elmFile *p;
     p = new elmFile;
     p->info = R;
@@ -26,6 +29,7 @@ elmFile* createElmFile(Row R){
 }
 
 Cursor createCursor(){
+    //create cursor
     Cursor C;
     C.cell_ptr = NIL;
     C.row_ptr = NIL;
@@ -34,14 +38,18 @@ Cursor createCursor(){
 }
 
 File createFile(string name){
+    //create new file
     File F;
     F.first = NIL;
     F.last = NIL;
     F.length = 0;
     F.name = name;
+
+    return F;
 }
 
 elmFolder* createElmFolder(File F){
+    //create new elmFolder
     elmFolder *p;
     p = new elmFolder;
     p->info = F;
@@ -49,21 +57,29 @@ elmFolder* createElmFolder(File F){
     return p;
 }
 Folder createFolder(string folder_name){
+    //Create new folder
     Folder F;
     F.first = NIL;
     F.length = 0;
     F.name = folder_name;
+
+    return F;
 }
 
 /*-------------- Clipboard --------------*/
 
 bool isFullClipboard(Clipboard C){
+    //mengecek apakah clipboard sudah penuh.
+    //mengembalikan true jika penuh
     return C.height == 10;
 }
 bool isEmptyClipboard(Clipboard C){
+    //mengecek apakah clipboard masih kosong.
+    //mengembalikan true jika penuh
     return C.height == 0;
 }
 void pushClipboard(Clipboard &C,string p){
+    //prosedur untuk menambahkan clipboard
     C.info[C.top] = p;
     C.top = (C.top+1)%5;
     if (!isFullClipboard(C)){
@@ -71,6 +87,7 @@ void pushClipboard(Clipboard &C,string p){
     }
 }
 void popClipboard(Clipboard &C,string &p){
+    //untuk melakukan pop pada clipboard
     if (!isEmptyClipboard(C)){
         C.top = (C.top-1)-10*floor(double(C.top-1)/double(10));
         p = C.info[C.top];
@@ -79,6 +96,7 @@ void popClipboard(Clipboard &C,string &p){
 }
 
 string peek(Clipboard C){
+    //untuk melihat nilai paling atas
     int tempTop;
     tempTop = (C.top-1)-10*floor(double(C.top-1)/double(10));
     return C.info[tempTop];

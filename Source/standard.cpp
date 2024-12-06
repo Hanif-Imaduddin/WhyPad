@@ -19,3 +19,33 @@ void stringToAddress(string str,address_of_row &start_ptr,address_of_row &end_pt
         end_ptr = start_ptr;
     }
 }
+
+//Menampilkan seluruh isi file
+void printFile(address_of_folder F,Cursor C){
+    address_of_file p;
+    address_of_row q;
+    int i;
+
+    p = F->info.first;
+    i = 1;
+    while (p != NIL){
+        cout<<i<<". ";
+        q = p->info.first;
+        while (q != NIL){
+            cout<<q->info;
+            if (q == C.cell_ptr){
+                cout<<"|";
+            }
+            q = q->next;
+        }
+        cout<<endl;
+        p = p->next;
+        i++;
+    }
+}
+
+//Menampilkan judul aplikasi
+void printHeader(){
+    system("cls");
+    cout << string(50, '=') << endl;
+}

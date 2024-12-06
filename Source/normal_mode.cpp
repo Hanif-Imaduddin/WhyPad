@@ -1,6 +1,7 @@
 #include "../Header/normal_mode.h"
 
 void swipeRight(Cursor &C,int n){
+    //untuk memindahkan kursor ke kanan
     int i;
     i = 0;
     if (C.cell_ptr != NIL && C.row_ptr != NIL){
@@ -11,6 +12,7 @@ void swipeRight(Cursor &C,int n){
     }
 }
 void swipeLeft(Cursor &C,int n){
+    //untuk memindahkan kursor ke kiri
     int i;
     i = 0;
     if (C.cell_ptr != NIL && C.row_ptr != NIL){
@@ -21,6 +23,7 @@ void swipeLeft(Cursor &C,int n){
     }
 }
 void slideUp(Cursor &C,int n){
+    //untuk memindahkan kursor ke elemen paling awal atas
     int i;
     i = 0;
     if (C.row_ptr != NIL){
@@ -29,8 +32,10 @@ void slideUp(Cursor &C,int n){
             i++;
         }
     }
+    C.cell_ptr = C.row_ptr->info.first;
 }
 void slideDown(Cursor &C,int n){
+    //untuk memindahkan kursor ke elemen paling awal bawah
     int i;
     i = 0;
     if (C.row_ptr != NIL){
@@ -39,12 +44,15 @@ void slideDown(Cursor &C,int n){
             i++;
         }
     }
+    C.cell_ptr = C.row_ptr->info.first;
 }
 
-void rowStart(Cursor &C){
+void rowStart(Cursor &C) {
+    //memindahkan kursor ke baris paling awal
     C.cell_ptr = C.row_ptr->info.first;
 }
 void rowEnd(Cursor &C){
+    //memindakhkan kursor ke baris paling akhir
     C.cell_ptr = C.row_ptr->info.last;
 }
 
