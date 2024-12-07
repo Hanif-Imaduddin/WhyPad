@@ -8,6 +8,11 @@ using namespace std;
 
 int main()
 {
+    cout<<"Work!"<<endl;
+    return 0;
+}
+
+/*
     Folder folder;
     File lorem;
     Cursor cursor;
@@ -21,8 +26,7 @@ int main()
         getline(cin,input);
         if ('1')
     }
-}
-
+*/
 
 /*
 Test Dummy File

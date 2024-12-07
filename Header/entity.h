@@ -10,6 +10,7 @@ using namespace std;
 typedef struct elmRow * address_of_row; //pointer to element row
 typedef struct elmFile * address_of_file; //pointer to element file
 typedef struct elmFolder * address_of_folder; //pointer to element folder
+typedef struct elmStackOfLog * address_of_sol; // pointer to element stack of log
 
 struct elmRow{
     char info;
@@ -61,11 +62,12 @@ bool isFullClipboard(Clipboard C);
 bool isEmptyClipboard(Clipboard C);
 void pushClipboard(Clipboard &C,string p);
 void popClipboard(Clipboard &C,string &p);
-string peek(Clipboard C);
+string peekClipboard(Clipboard C);
 
 
-/* Instruction code: {Delete row elements: 0, Insert row elemen: 1, Delete Row: 3,
-Insert Row: 4,delete file: 5, insert file: 6}*/
+/* Instruction code: {Delete row elements: 0, Insert row elemen: 1, Delete Row: 2,
+Insert Row: 3,delete file: 4, insert file: 5}*/
+
 struct Log{
     int instruction_code;
     elmFolder* file_ptr;
@@ -82,5 +84,10 @@ struct StackOfLog{
 Log createLog(int instruction_code,elmFolder* file_ptr,elmFile *row_ptr,elmRow *start_ptr,elmRow *end_ptr);
 elmStackOfLog* createElmStackOfLog(Log L);
 StackOfLog createStackOfLog();
+
+bool isEmptyStackOfLog(StackOfLog S);
+void pushStackOfLog(StackOfLog &S, address_of_sol p);
+void popStackOfLog(StackOfLog &S, address_of_sol &p);
+address_of_sol peekStackOfLog(StackOfLog S);
 
 #endif // ENTITY_H_INCLUDED

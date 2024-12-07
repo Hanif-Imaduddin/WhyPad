@@ -95,7 +95,7 @@ void popClipboard(Clipboard &C,string &p){
     }
 }
 
-string peek(Clipboard C){
+string peekClipboard(Clipboard C){
     //untuk melihat nilai paling atas
     int tempTop;
     tempTop = (C.top-1)-10*floor(double(C.top-1)/double(10));
@@ -128,4 +128,24 @@ StackOfLog createStackOfLog(){
     S.top = NIL;
 
     return S;
+}
+
+bool isEmptyStackOfLog(StackOfLog S){
+    return S.top == NIL;
+}
+void pushStackOfLog(StackOfLog &S, address_of_sol p){
+    p->next = S.top;
+    S.top = p;
+}
+void popStackOfLog(StackOfLog &S, address_of_sol &p){
+    if (isEmptyStackOfLog(S)){
+        p = NIL;
+    }else{
+        p = S.top;
+        S.top = S.top->next;
+        p->next = NIL;
+    }
+}
+address_of_sol peekStackOfLog(StackOfLog S){
+    return S.top;
 }

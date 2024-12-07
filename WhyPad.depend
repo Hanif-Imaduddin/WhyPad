@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1733287009 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
+1733490744 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
 	<iostream>
 	"../Header/standard.h"
 	"../Header/dummy_file.h"
 	"../Header/insert_mode.h"
+	"../Header/menu.h"
 
 1732276171 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\testing\test_normal_mode.cpp
 
@@ -14,18 +15,19 @@
 	"entity.h"
 	"standard.h"
 
-1733291025 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
+1733490798 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
 	<iostream>
 	<cmath>
 
-1733272426 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
+1733292984 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
+	<string>
 	"entity.h"
 	<iostream>
 
-1733291025 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
+1733490699 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
 	"../Header/entity.h"
 
-1733272768 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
+1733293510 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
 	"../Header/standard.h"
 
 1733272273 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\dummy_file.cpp
@@ -44,4 +46,19 @@
 	<iostream>
 	"entity.h"
 	"standard.h"
+
+1733490714 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\command_line_mode.cpp
+	"../Header/command_line_mode.h"
+
+1733487201 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\command_line_mode.h
+	"entity.h"
+	<iostream>
+
+1733294257 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\menu.h
+	<iostream>
+	"entity.h"
+
+1733293501 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\menu.cpp
+	"../Header/menu.h"
+	"../Header/standard.h"
 
