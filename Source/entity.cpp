@@ -40,9 +40,9 @@ Cursor createCursor(){
 File createFile(string name){
     //create new file
     File F;
-    F.first = NIL;
-    F.last = NIL;
-    F.length = 0;
+    F.first = createElmFile(createRow());
+    F.last = F.first;
+    F.length = 1;
     F.name = name;
 
     return F;
@@ -64,6 +64,15 @@ Folder createFolder(string folder_name){
     F.name = folder_name;
 
     return F;
+}
+
+Cursor createCursor(address_of_folder F){
+    Cursor C;
+    C.cell_ptr = F->info.first->info.first;
+    C.file_ptr = F;
+    C.row_ptr = F->info.first;
+
+    return C;
 }
 
 /*-------------- Clipboard --------------*/

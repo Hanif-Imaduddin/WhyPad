@@ -6,7 +6,7 @@
 using namespace std;
 
 void printFolder(Folder F);
-void menu_master(Folder F);
+void menu_master(Folder F,string message);
 
 
 

@@ -28,6 +28,8 @@ void printFile(address_of_folder F,Cursor C){
 
     p = F->info.first;
     i = 1;
+    cout<<"File: "<<F->info.name<<endl;
+    cout<<string(50,'=')<<endl;
     while (p != NIL){
         cout<<i<<". ";
         q = p->info.first;
@@ -42,6 +44,11 @@ void printFile(address_of_folder F,Cursor C){
         p = p->next;
         i++;
     }
+}
+
+void hold(){
+    string input;
+    getline(cin,input);
 }
 
 //Menampilkan judul aplikasi
