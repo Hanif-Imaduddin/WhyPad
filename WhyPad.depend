@@ -15,7 +15,7 @@
 	"entity.h"
 	"standard.h"
 
-1733490798 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
+1733580793 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
 	<iostream>
 	<cmath>
 
@@ -24,7 +24,7 @@
 	"entity.h"
 	<iostream>
 
-1733490699 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
+1733491051 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
 	"../Header/entity.h"
 
 1733293510 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
@@ -47,11 +47,12 @@
 	"entity.h"
 	"standard.h"
 
-1733490714 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\command_line_mode.cpp
+1733580883 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\command_line_mode.cpp
 	"../Header/command_line_mode.h"
 
-1733487201 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\command_line_mode.h
+1733580812 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\command_line_mode.h
 	"entity.h"
+	"standard.h"
 	<iostream>
 
 1733294257 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\menu.h
