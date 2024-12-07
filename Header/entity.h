@@ -66,7 +66,7 @@ string peekClipboard(Clipboard C);
 
 
 /* Instruction code: {Delete row elements: 0, Insert row elemen: 1, Delete Row: 2,
-Insert Row: 3,delete file: 4, insert file: 5}*/
+Insert Row: 3}*/
 
 struct Log{
     int instruction_code;

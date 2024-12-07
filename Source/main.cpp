@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    cout<<"Work!"<<endl;
+    cout<<"Nggak error"<<endl;
     return 0;
 }
 
