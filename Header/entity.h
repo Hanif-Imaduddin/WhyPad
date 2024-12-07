@@ -54,6 +54,8 @@ File createFile(string name);
 elmFolder* createElmFolder(File F);
 Folder createFolder(string folder_name);
 
+Cursor createCursor(address_of_folder F);
+
 struct Clipboard{ // Stack
     string info[10];
     int height,top;

@@ -1,10 +1,13 @@
 # depslib dependency file v1.0
-1733490744 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
+1733586712 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
 	<iostream>
+	<string>
+	"../Header/entity.h"
 	"../Header/standard.h"
 	"../Header/dummy_file.h"
 	"../Header/insert_mode.h"
 	"../Header/menu.h"
+	"../Header/command_line_mode.h"
 
 1732276171 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\testing\test_normal_mode.cpp
 
@@ -15,19 +18,19 @@
 	"entity.h"
 	"standard.h"
 
-1733580793 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
+1733586361 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
 	<iostream>
 	<cmath>
 
-1733292984 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
+1733586768 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
 	<string>
 	"entity.h"
 	<iostream>
 
-1733491051 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
+1733586427 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
 	"../Header/entity.h"
 
-1733293510 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
+1733586942 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
 	"../Header/standard.h"
 
 1733272273 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\dummy_file.cpp
@@ -55,11 +58,11 @@
 	"standard.h"
 	<iostream>
 
-1733294257 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\menu.h
+1733584208 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\menu.h
 	<iostream>
 	"entity.h"
 
-1733293501 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\menu.cpp
+1733585836 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\menu.cpp
 	"../Header/menu.h"
 	"../Header/standard.h"
 
