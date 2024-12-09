@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void file_menu(address_of_folder F){
+void normal_mode_menu(address_of_folder F){
     string input,error_message;
     int n;
     Cursor cursor;
@@ -132,7 +132,7 @@ int main()
                         file_adr = p;
                     }
                     folder.length++;
-                    file_menu(file_adr);
+                    normal_mode_menu(file_adr);
                 }
 
             }
