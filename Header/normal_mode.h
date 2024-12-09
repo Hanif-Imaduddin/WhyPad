@@ -2,6 +2,9 @@
 #define NORMAL_MODE_H_INCLUDED
 #include "entity.h"
 #include "standard.h"
+#include <iostream>
+
+using namespace std;
 
 void swipeRight(Cursor &C,int n);
 void swipeLeft(Cursor &C,int n);
@@ -16,6 +19,9 @@ void fileEnd(Cursor &C);
 
 void copyChar(File F,Clipboard &CB,int row_idx,int start_idx,int end_idx);
 void pasteChar(File F,Clipboard &CB, Cursor &C);
+
+void deleteElm(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C,int n);
+void deleteRow(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C);
 
 
 #endif // NORMAL_MODE_H_INCLUDED
