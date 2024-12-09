@@ -121,3 +121,49 @@ void pasteChar(File F,Clipboard &CB, Cursor &C){
         }
     }
 }
+
+void deleteElm(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C,int n){
+    address_of_row start_adr,end_adr;
+    int i;
+    if (C.cell_ptr != NIL && n > 0){
+        start_adr = end_adr = C.cell_ptr;
+        i = 1;
+        while (start_adr->prev != NIL && i < n){
+            start_adr = start_adr->prev;
+            i++
+        }
+        if (start_adr->prev != NIL){
+            start_adr->prev->next = NIL;
+        }else{
+            C.row_ptr->info.first = end_adr->next;
+        }
+        if (end_adr->next != NIL){
+            end_adr->next->prev = NIL;
+        }else{
+            C.row_ptr->info.last = start_adr->prev;
+        }
+        pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(0,F,C.row_ptr,start_adr,end_adr)));
+        C.cell_ptr = start_adr->prev;
+        C.row_ptr->info.length -= i;
+    }
+}
+
+void deleteRow(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C){
+    address_of_file p;
+    if (C.row_ptr->prev != NIL || C.row_ptr->next != NIL){// Kalau cuman tersisa satu row nggak dihapus;
+        if (C.row_ptr->prev != NIL){
+            C.row_ptr->prev->next = NIL;
+        }else{
+            C.file_ptr->info.first = C.row_ptr->next;
+        }
+        if (C.row_ptr->next != NIL){
+            C.row_ptr->next->prev = NIL;
+        }else{
+            C.file_ptr->info.last = C.row_ptr->prev;
+        }
+        pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(2,F,C.row_ptr,NIL,NIL)));
+        C.row_ptr = C.row_ptr->prev;
+        C.cell_ptr = C.row_ptr->info.first;
+        C.file_ptr->info.length--;
+    }
+}
