@@ -4,11 +4,13 @@ void swipeRight(Cursor &C,int n){
     //untuk memindahkan kursor ke kanan
     int i;
     i = 0;
-    if (C.cell_ptr != NIL && C.row_ptr != NIL){
-        while (i < n && C.cell_ptr->next != NIL){
-            i++;
-            C.cell_ptr = C.cell_ptr->next;
-        }
+    if (C.cell_ptr == NIL){
+        C.cell_ptr = C.row_ptr->info.first;
+        n--;
+    }
+    while (i < n && C.cell_ptr->next != NIL){
+        i++;
+        C.cell_ptr = C.cell_ptr->next;
     }
 }
 void swipeLeft(Cursor &C,int n){
@@ -16,7 +18,7 @@ void swipeLeft(Cursor &C,int n){
     int i;
     i = 0;
     if (C.cell_ptr != NIL && C.row_ptr != NIL){
-        while (i < n && C.cell_ptr->prev != NIL){
+        while (i < n && C.cell_ptr != NIL){
             i++;
             C.cell_ptr = C.cell_ptr->prev;
         }
@@ -58,12 +60,14 @@ void rowEnd(Cursor &C){
 
 void fileStart(Cursor &C){
     C.row_ptr = C.file_ptr->info.first;
+    C.cell_ptr = C.row_ptr->info.first;
 }
 void fileEnd(Cursor &C){
     C.row_ptr = C.file_ptr->info.last;
+    C.cell_ptr = C.row_ptr->info.last;
 }
 
-void copyChar(File F,Clipboard &CB,int row_idx,int start_idx,int end_idx){
+void copyChar(File &F,Clipboard &CB,int row_idx,int start_idx,int end_idx){
     elmFile *p;
     elmRow *q;
     string strElm;
@@ -96,7 +100,7 @@ void copyChar(File F,Clipboard &CB,int row_idx,int start_idx,int end_idx){
     }
 }
 
-void pasteChar(File F,Clipboard &CB, Cursor &C){
+void pasteChar(File &F,Clipboard &CB, Cursor &C){
     elmRow *start_ptr,*end_ptr;
     string str;
     if (!isEmptyClipboard(CB)){
@@ -109,16 +113,17 @@ void pasteChar(File F,Clipboard &CB, Cursor &C){
             }
             C.cell_ptr->next = start_ptr;
             start_ptr->prev = C.cell_ptr;
-            C.cell_ptr = start_ptr;
         }else{
             if (C.row_ptr->info.first == NIL){
                 C.row_ptr->info.first = start_ptr;
+                C.row_ptr->info.last = end_ptr;
             }else{
                 end_ptr->next = C.row_ptr->info.first;
                 C.row_ptr->info.first->prev = end_ptr;
                 C.row_ptr->info.first = start_ptr;
             }
         }
+        C.cell_ptr = end_ptr;
     }
 }
 
@@ -130,15 +135,15 @@ void deleteElm(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C,int n){
         i = 1;
         while (start_adr->prev != NIL && i < n){
             start_adr = start_adr->prev;
-            i++
+            i++;
         }
         if (start_adr->prev != NIL){
-            start_adr->prev->next = NIL;
+            start_adr->prev->next = start_adr->next;
         }else{
             C.row_ptr->info.first = end_adr->next;
         }
         if (end_adr->next != NIL){
-            end_adr->next->prev = NIL;
+            end_adr->next->prev = end_adr->prev;
         }else{
             C.row_ptr->info.last = start_adr->prev;
         }
@@ -151,19 +156,23 @@ void deleteElm(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C,int n){
 void deleteRow(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C){
     address_of_file p;
     if (C.row_ptr->prev != NIL || C.row_ptr->next != NIL){// Kalau cuman tersisa satu row nggak dihapus;
-        if (C.row_ptr->prev != NIL){
-            C.row_ptr->prev->next = NIL;
-        }else{
+        if (C.row_ptr->prev == NIL){
             C.file_ptr->info.first = C.row_ptr->next;
-        }
-        if (C.row_ptr->next != NIL){
             C.row_ptr->next->prev = NIL;
-        }else{
+            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(2,F,C.row_ptr,NIL,NIL)));
+            C.row_ptr = C.row_ptr->next;
+        }else if (C.row_ptr->next == NIL){
             C.file_ptr->info.last = C.row_ptr->prev;
+            C.row_ptr->prev->next = NIL;
+            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(2,F,C.row_ptr,NIL,NIL)));
+            C.row_ptr = C.row_ptr->prev;
+        }else{
+            C.row_ptr->prev->next = C.row_ptr->next;
+            C.row_ptr->next->prev = C.row_ptr->prev;
+            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(2,F,C.row_ptr,NIL,NIL)));
+            C.row_ptr = C.row_ptr->next;
         }
-        pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(2,F,C.row_ptr,NIL,NIL)));
-        C.row_ptr = C.row_ptr->prev;
-        C.cell_ptr = C.row_ptr->info.first;
+        C.cell_ptr = NIL;
         C.file_ptr->info.length--;
     }
 }

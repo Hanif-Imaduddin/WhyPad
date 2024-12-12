@@ -1,12 +1,12 @@
 #include "../Header/insert_mode.h"
 
-void insert_master(address_of_folder F,Cursor &C){
+void insert_master(address_of_folder F,Cursor &C,StackOfLog &Undo_Stack){
     string input;
     address_of_row start_adr,end_adr;
     address_of_file R;
     system("cls");
     printFile(F,C);
-    cout<<"(Normal Mode): ";
+    cout<<endl<<"(Insert Mode): ";
     getline(cin,input);
     while (input != "{exit}"){
         if (input == "{row}") {
@@ -22,6 +22,7 @@ void insert_master(address_of_folder F,Cursor &C){
                 C.row_ptr->next = R;
                 R->prev = C.row_ptr;
             }
+            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(1,C.file_ptr,R,NIL,NIL)));
         }else{
             stringToAddress(input,start_adr,end_adr);
             if (C.cell_ptr == NIL){ // cell_ptr nill belum tentu row nya kosong
@@ -44,11 +45,13 @@ void insert_master(address_of_folder F,Cursor &C){
                 C.cell_ptr->next = start_adr;
                 start_adr->prev = C.cell_ptr;
             }
+            C.row_ptr->info.length += input.length();
+            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(1,C.file_ptr,C.row_ptr,start_adr,end_adr)));
             C.cell_ptr = end_adr;
         }
         system("cls");
         printFile(F,C);
-        cout<<"(Normal Mode): ";
+        cout<<endl<<"(Insert Mode): ";
         getline(cin,input);
     }
 }

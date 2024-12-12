@@ -28,15 +28,6 @@ elmFile* createElmFile(Row R){
     return p;
 }
 
-Cursor createCursor(){
-    //create cursor
-    Cursor C;
-    C.cell_ptr = NIL;
-    C.row_ptr = NIL;
-    C.file_ptr = NIL;
-    return C;
-}
-
 File createFile(string name){
     //create new file
     File F;
@@ -68,7 +59,7 @@ Folder createFolder(string folder_name){
 
 Cursor createCursor(address_of_folder F){
     Cursor C;
-    C.cell_ptr = F->info.first->info.first;
+    C.cell_ptr = NIL;
     C.file_ptr = F;
     C.row_ptr = F->info.first;
 
@@ -76,6 +67,13 @@ Cursor createCursor(address_of_folder F){
 }
 
 /*-------------- Clipboard --------------*/
+
+Clipboard createClipboard(){
+    Clipboard CB;
+    CB.height = 0;
+    CB.top = 0;
+    return CB;
+}
 
 bool isFullClipboard(Clipboard C){
     //mengecek apakah clipboard sudah penuh.
@@ -157,4 +155,54 @@ void popStackOfLog(StackOfLog &S, address_of_sol &p){
 }
 address_of_sol peekStackOfLog(StackOfLog S){
     return S.top;
+}
+
+/*-------------- List Of String --------------*/
+
+ListOfString createListOfString(){
+    ListOfString L;
+    L.first = NIL;
+    L.length = 0;
+    return L;
+}
+address_of_los createElmListOfString(string info){
+    address_of_los p;
+    p = new elmListOfString;
+    p->info = info;
+    p->next = NIL;
+    return p;
+}
+void insertListOfString(ListOfString &L,address_of_los p){
+    address_of_los q;
+    if (L.first == NIL){
+        L.first = p;
+    }else{
+        q = L.first;
+        while (q->next != NIL){
+            q = q->next;
+        }
+        q->next = p;
+    }
+    L.length++;
+}
+void deleteListOfString(ListOfString &L){
+    address_of_los p;
+    while (L.first != NIL){
+        p = L.first->next;
+        delete L.first;
+        L.first = p;
+    }
+}
+string getInfo(ListOfString L,int idx){
+    address_of_los p;
+    int i;
+    if (idx >= L.length){
+        throw invalid_argument("Index out of range!");
+    }else{
+        p = L.first;
+        for (i = 0;i < idx;i++){
+            p = p->next;
+        }
+        return p->info;
+    }
 }

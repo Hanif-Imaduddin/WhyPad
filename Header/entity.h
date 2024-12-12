@@ -60,6 +60,8 @@ struct Clipboard{ // Stack
     string info[10];
     int height,top;
 };
+
+Clipboard createClipboard();
 bool isFullClipboard(Clipboard C);
 bool isEmptyClipboard(Clipboard C);
 void pushClipboard(Clipboard &C,string p);
@@ -91,5 +93,27 @@ bool isEmptyStackOfLog(StackOfLog S);
 void pushStackOfLog(StackOfLog &S, address_of_sol p);
 void popStackOfLog(StackOfLog &S, address_of_sol &p);
 address_of_sol peekStackOfLog(StackOfLog S);
+
+/*-------------- List Of String --------------*/
+
+typedef struct elmListOfString * address_of_los;
+
+struct elmListOfString{
+    string info;
+    address_of_los next;
+};
+
+struct ListOfString{
+    address_of_los first;
+    int length;
+};
+
+ListOfString createListOfString();
+address_of_los createElmListOfString(string info);
+void insertListOfString(ListOfString &L,address_of_los p);
+void deleteListOfString(ListOfString &L);
+string getInfo(ListOfString L,int idx);
+
+
 
 #endif // ENTITY_H_INCLUDED

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void insert_master(address_of_folder F,Cursor &C);
+void insert_master(address_of_folder F,Cursor &C,StackOfLog &Undo_Stack);
 
 
 #endif // INSERT_MODE_H_INCLUDED
