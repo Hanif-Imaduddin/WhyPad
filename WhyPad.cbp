@@ -32,12 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Files/config.txt" />
+		<Unit filename="Files/lorem_ipsum.txt" />
+		<Unit filename="Header/command_line_mode.h" />
 		<Unit filename="Header/dummy_file.h" />
 		<Unit filename="Header/entity.h" />
 		<Unit filename="Header/insert_mode.h" />
 		<Unit filename="Header/menu.h" />
 		<Unit filename="Header/normal_mode.h" />
 		<Unit filename="Header/standard.h" />
+		<Unit filename="Source/command_line_mode.cpp" />
 		<Unit filename="Source/dummy_file.cpp" />
 		<Unit filename="Source/entity.cpp" />
 		<Unit filename="Source/insert_mode.cpp" />
