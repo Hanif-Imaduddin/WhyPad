@@ -138,12 +138,12 @@ void deleteElm(address_of_folder F,StackOfLog &Undo_Stack,Cursor &C,int n){
             i++;
         }
         if (start_adr->prev != NIL){
-            start_adr->prev->next = start_adr->next;
+            start_adr->prev->next = end_adr->next;
         }else{
             C.row_ptr->info.first = end_adr->next;
         }
         if (end_adr->next != NIL){
-            end_adr->next->prev = end_adr->prev;
+            end_adr->next->prev = start_adr->prev;
         }else{
             C.row_ptr->info.last = start_adr->prev;
         }

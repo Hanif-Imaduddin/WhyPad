@@ -22,7 +22,7 @@ void insert_master(address_of_folder F,Cursor &C,StackOfLog &Undo_Stack){
                 C.row_ptr->next = R;
                 R->prev = C.row_ptr;
             }
-            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(1,C.file_ptr,R,NIL,NIL)));
+            pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(3,C.file_ptr,R,NIL,NIL)));
         }else{
             stringToAddress(input,start_adr,end_adr);
             if (C.cell_ptr == NIL){ // cell_ptr nill belum tentu row nya kosong
