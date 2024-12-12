@@ -70,7 +70,7 @@ void normal_mode_menu(address_of_folder F){
             }else if (Input_P[0] == "im"){
                 insert_master(F,cursor,Undo_Stack);
             }else if (Input_P[0] == "clm"){
-
+                cl_master(F,Undo_Stack,cursor);
             }else{
                 error_message = "Input Invalid!";
             }

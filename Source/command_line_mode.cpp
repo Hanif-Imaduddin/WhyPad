@@ -1,12 +1,13 @@
 #include "../Header/command_line_mode.h"
 void cl_master(address_of_folder F,StackOfLog &Undo_Stack,Cursor C){
     StackOfLog Redo_Stack;
+    string error_message;
     address_of_sol p;
     string input;
     Redo_Stack = createStackOfLog();
     system("cls");
     printFile(F,C);
-    cout<<"(Command Line Mode): ";
+    cout<<endl<<"(Command Line Mode): ";
     getline(cin,input);
     while (input != "{exit}"){
         if (input == "{undo}"){
@@ -16,7 +17,10 @@ void cl_master(address_of_folder F,StackOfLog &Undo_Stack,Cursor C){
         }
         system("cls");
         printFile(F,C);
-        cout<<"(Command Line Mode): ";
+        if (error_message != ""){
+            cout<<endl<<error_message<<endl;
+        }
+        cout<<endl<<"(Command Line Mode): ";
         getline(cin,input);
     }
     while (!isEmptyStackOfLog(Redo_Stack)){
@@ -77,6 +81,7 @@ void undo_delete_elm(address_of_sol p,StackOfLog &Redo_Stack){
         q->next = p->info.start_ptr;
         r->prev = p->info.end_ptr;
     }
+    pushStackOfLog(Redo_Stack,p);
 }
 void redo_delete_elm(address_of_sol p,StackOfLog &Undo_Stack){
     address_of_row q,r;
@@ -84,20 +89,21 @@ void redo_delete_elm(address_of_sol p,StackOfLog &Undo_Stack){
         p->info.row_ptr->info.first = NIL;
         p->info.row_ptr->info.last = NIL;
     }else if (p->info.start_ptr->prev == NIL){
-        p->info.row_ptr->info.first = NIL;
+        p->info.row_ptr->info.first = p->info.end_ptr->next;
         q = p->info.end_ptr->next;
         q->prev = NIL;
     }else if (p->info.end_ptr->next == NIL){
-        p->info.row_ptr->info.last = NIL;
+        p->info.row_ptr->info.last = p->info.start_ptr->prev;
         q = p->info.start_ptr->prev;
         q->next = NIL;
     }else{
         q = p->info.start_ptr->prev;
         r = p->info.end_ptr->next;
 
-        q->next = NIL;
-        r->prev = NIL;
+        q->next = r;
+        r->prev = q;
     }
+    pushStackOfLog(Undo_Stack,p);
 }
 
 void undo_insert_elm(address_of_sol p,StackOfLog &Redo_Stack){
@@ -106,20 +112,21 @@ void undo_insert_elm(address_of_sol p,StackOfLog &Redo_Stack){
         p->info.row_ptr->info.first = NIL;
         p->info.row_ptr->info.last = NIL;
     }else if (p->info.start_ptr->prev == NIL){
-        p->info.row_ptr->info.first = NIL;
+        p->info.row_ptr->info.first = p->info.end_ptr->next;
         q = p->info.end_ptr->next;
         q->prev = NIL;
     }else if (p->info.end_ptr->next == NIL){
-        p->info.row_ptr->info.last = NIL;
+        p->info.row_ptr->info.last = p->info.start_ptr->prev;
         q = p->info.start_ptr->prev;
         q->next = NIL;
     }else{
         q = p->info.start_ptr->prev;
         r = p->info.end_ptr->next;
 
-        q->next = NIL;
-        r->prev = NIL;
+        q->next = r;
+        r->prev = q;
     }
+    pushStackOfLog(Redo_Stack,p);
 }
 void redo_insert_elm(address_of_sol p,StackOfLog &Undo_Stack){
     address_of_row q,r;
@@ -141,6 +148,7 @@ void redo_insert_elm(address_of_sol p,StackOfLog &Undo_Stack){
         q->next = p->info.start_ptr;
         r->prev = p->info.end_ptr;
     }
+    pushStackOfLog(Undo_Stack,p);
 }
 
 void undo_delete_row(address_of_sol p,StackOfLog &Redo_Stack){
@@ -163,6 +171,7 @@ void undo_delete_row(address_of_sol p,StackOfLog &Redo_Stack){
         q->next = p->info.row_ptr;
         r->prev = p->info.row_ptr;
     }
+    pushStackOfLog(Redo_Stack,p);
 }
 void redo_delete_row(address_of_sol p,StackOfLog &Undo_Stack){
     address_of_file q,r;
@@ -181,9 +190,10 @@ void redo_delete_row(address_of_sol p,StackOfLog &Undo_Stack){
         q = p->info.row_ptr->prev;
         r = p->info.row_ptr->next;
 
-        q->next = NIL;
-        r->prev = NIL;
+        q->next = r;
+        r->prev = q;
     }
+    pushStackOfLog(Undo_Stack,p);
 }
 
 void undo_insert_row(address_of_sol p,StackOfLog &Redo_Stack){
@@ -203,9 +213,10 @@ void undo_insert_row(address_of_sol p,StackOfLog &Redo_Stack){
         q = p->info.row_ptr->prev;
         r = p->info.row_ptr->next;
 
-        q->next = NIL;
-        r->prev = NIL;
+        q->next = p->info.row_ptr->next;
+        r->prev = p->info.row_ptr->prev;
     }
+    pushStackOfLog(Redo_Stack,p);
 }
 void redo_insert_row(address_of_sol p,StackOfLog &Undo_Stack){
     address_of_file q,r;
@@ -224,7 +235,8 @@ void redo_insert_row(address_of_sol p,StackOfLog &Undo_Stack){
         q = p->info.row_ptr->prev;
         r = p->info.row_ptr->next;
 
-        q->next = NIL;
-        r->prev = NIL;
+        q->next = p->info.row_ptr;
+        r->prev = p->info.row_ptr;
     }
+    pushStackOfLog(Undo_Stack,p);
 }

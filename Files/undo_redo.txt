@@ -1,0 +1,4 @@
+Tambah karakter
+Tambah baris
+Hapus karakter 123456789
+Hapus Baris
