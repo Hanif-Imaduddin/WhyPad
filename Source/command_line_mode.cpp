@@ -3,17 +3,27 @@ void cl_master(address_of_folder F,StackOfLog &Undo_Stack,Cursor C){
     StackOfLog Redo_Stack;
     string error_message;
     address_of_sol p;
-    string input;
+    string input,input_p0;
+    ListOfString input_list,target_list;
+
     Redo_Stack = createStackOfLog();
     system("cls");
     printFile(F,C);
     cout<<endl<<"(Command Line Mode): ";
     getline(cin,input);
-    while (input != "{exit}"){
-        if (input == "{undo}"){
+    input_list = splitString(input,' ');
+    input_p0 = getInfo(input_list,0);
+
+    while (input_p0 != "{exit}"){
+        target_list = extractInput(input);
+        if (input_p0 == "undo"){
             undo_master(Undo_Stack,Redo_Stack);
-        }else if (input == "{redo}"){
+        }else if (input_p0 == "redo"){
             redo_master(Undo_Stack,Redo_Stack);
+        }else if (target_list.length == 2){
+            find_and_replace(F,target_list,Undo_Stack);
+        }else{
+            error_message = "Input Invalid!";
         }
         system("cls");
         printFile(F,C);
@@ -22,6 +32,8 @@ void cl_master(address_of_folder F,StackOfLog &Undo_Stack,Cursor C){
         }
         cout<<endl<<"(Command Line Mode): ";
         getline(cin,input);
+        input_list = splitString(input,' ');
+        input_p0 = getInfo(input_list,0);
     }
     while (!isEmptyStackOfLog(Redo_Stack)){
         popStackOfLog(Redo_Stack,p);
@@ -239,4 +251,61 @@ void redo_insert_row(address_of_sol p,StackOfLog &Undo_Stack){
         r->prev = p->info.row_ptr;
     }
     pushStackOfLog(Undo_Stack,p);
+}
+void replace_elm(address_of_folder F,address_of_file row_ptr,StackOfLog &Undo_Stack,address_of_row start_source,address_of_row end_source,address_of_row start_target,address_of_row end_target){
+    if (start_source->prev != NIL){
+        start_source->prev->next = start_target;
+        start_target->prev = start_source->prev;
+    }else{
+        row_ptr->info.first = start_target;
+    }
+    if (end_source->next != NIL){
+        end_source->next->prev = end_target;
+        end_target->next = end_source->next;
+    }else{
+        row_ptr->info.last = end_target;
+    }
+    pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(0,F,row_ptr,start_source,end_source)));
+    pushStackOfLog(Undo_Stack,createElmStackOfLog(createLog(1,F,row_ptr,start_target,end_target)));
+}
+void find_and_replace(address_of_folder F,ListOfString target_list,StackOfLog &Undo_Stack){
+    string target,replacement;
+    address_of_row start_source,end_source,start_target,end_target,p;
+    address_of_file row_temp;
+    int i;
+    target = getInfo(target_list,0);
+    replacement = getInfo(target_list,1);
+    row_temp = F->info.first;
+    while (row_temp != NIL){
+        p = row_temp->info.first;
+        start_source = NIL;
+        end_source = NIL;
+        i = 0;
+        while (p != NIL){
+            if (target[i] == '\0'){
+                if (end_source == NIL){
+                    end_source = start_source;
+                }
+                stringToAddress(replacement,start_target,end_target);
+                replace_elm(F,row_temp,Undo_Stack,start_source,end_source,start_target,end_target);
+                start_source = NIL;
+                end_source = NIL;
+                i = 0;
+            }
+            if (target[i] == p->info){
+                if (start_source == NIL){
+                    start_source = p;
+                }else{
+                    end_source = p;
+                }
+                i++;
+            }else{
+                start_source = NIL;
+                end_source = NIL;
+                i = 0;
+            }
+            p = p->next;
+        }
+        row_temp = row_temp->next;
+    }
 }

@@ -42,7 +42,9 @@ void printFile(address_of_folder F,Cursor C){
     cout<<"File: "<<F->info.name<<endl;
     cout<<string(50,'=')<<endl;
     while (p != NIL){
-        cout<<i<<". ";
+        if (p == C.row_ptr && C.cell_ptr == NIL){
+            cout<<"|";
+        }
         q = p->info.first;
         while (q != NIL){
             cout<<q->info;
@@ -150,11 +152,12 @@ ListOfString extractInput(string input){
     i = 0;
     temp = "";
     append_mode = false;
-    while (input[i] == '\0'){
+    while (input[i] != '\0'){
         if (input[i] == '{'){
             append_mode = true;
         }else if (input[i] == '}'){
             insertListOfString(L,createElmListOfString(temp));
+            temp = "";
             append_mode = false;
         }else if (append_mode == true){
             temp += input[i];

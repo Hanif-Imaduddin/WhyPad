@@ -9,6 +9,7 @@
 #include "../Header/insert_mode.h"
 #include "../Header/menu.h"
 #include "../Header/command_line_mode.h"
+#include "../Header/visual_mode.h"
 
 using namespace std;
 
@@ -71,6 +72,8 @@ void normal_mode_menu(address_of_folder F){
                 insert_master(F,cursor,Undo_Stack);
             }else if (Input_P[0] == "clm"){
                 cl_master(F,Undo_Stack,cursor);
+            }else if (Input_P[0] == "vm"){
+                vm_master(F,cursor);
             }else{
                 error_message = "Input Invalid!";
             }
@@ -150,8 +153,10 @@ int main()
     string input,error_message;
     int input_int;
     Folder folder;
+
     folder = createFolder("Files");
     load_all_files(folder);
+
     menu_master(folder,"");
     cout<<"(Menu): ";
     getline(cin,input);
