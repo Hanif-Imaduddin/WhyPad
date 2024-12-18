@@ -165,7 +165,7 @@ int main()
         input_int = stoi(input);
     }
     catch(const invalid_argument& e){
-        if (input == "{quit}"){
+        if (input == "{quit}" || input == "{qs}"){
             input_int = -1;
         }else{
             input_int = -2;
@@ -188,16 +188,21 @@ int main()
                 if (file_adr == NIL){
                     cout<<"Masukan nama file: ";
                     getline(cin,input);
-                    file_adr = createElmFolder(createFile(input));
-                    if (p == NIL){
-                        folder.first = file_adr;
+                    if (isValidFileName(input,folder)){
+                        file_adr = createElmFolder(createFile(input));
+                        if (p == NIL){
+                            folder.first = file_adr;
+                        }else{
+                            p->next = file_adr;
+                        }
+                        folder.length++;
                     }else{
-                        p->next = file_adr;
+                        error_message = "Error: Nama file tidak valid!";
                     }
-                    folder.length++;
                 }
-                normal_mode_menu(file_adr);
-
+                if (error_message == ""){
+                    normal_mode_menu(file_adr);
+                }
             }
         }
         menu_master(folder,error_message);
@@ -208,60 +213,17 @@ int main()
             input_int = stoi(input);
         }
         catch(const invalid_argument& e){
-            if (input == "{quit}"){
+            if (input == "{quit}" || input == "{qs}"){
                 input_int = -1;
             }else{
                 input_int = -2;
                 error_message = "Error: Input tidak valid!";
             }
         }
+        error_message = "";
+    }
+    if (input == "{qs}"){
+        quitSave(folder);
     }
     return 0;
 }
-
-/*
-    Folder folder;
-    File lorem;
-    Cursor cursor;
-    lorem = lorem_ipsum();
-    folder = createFolder("Cek");
-    folder.first = createElmFolder(lorem);
-    menu_master(folder);
-    cin >> input;
-    while (input != -1 ){
-        menu_master(folder);
-        getline(cin,input);
-        if ('1')
-    }
-*/
-
-/*
-Test Dummy File
-    Folder folder;
-    File lorem;
-    Cursor cursor;
-    lorem = lorem_ipsum();
-    folder = createFolder("Nyoba aja");
-    folder.first = createElmFolder(lorem);
-    cursor.cell_ptr = lorem.first->info.first->next;
-    cursor.file_ptr = folder.first;
-    cursor.row_ptr = lorem.first;
-    printFile(folder.first,cursor);
-    return 0;
-*/
-/*
-Test Insert
-    Folder folder;
-    File lorem;
-    Cursor cursor;
-    lorem = lorem_ipsum();
-    folder = createFolder("Nyoba aja");
-    folder.first = createElmFolder(lorem);
-    cursor.cell_ptr = lorem.first->info.first->next;
-    cursor.file_ptr = folder.first;
-    cursor.row_ptr = lorem.first;
-    printFile(folder.first,cursor);
-
-    insert_master(folder.first,cursor);
-    return 0;
-*/

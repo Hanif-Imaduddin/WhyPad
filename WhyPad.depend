@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1734112355 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
+1734480744 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\main.cpp
 	<iostream>
 	<fstream>
 	<string>
@@ -26,7 +26,7 @@
 	<iostream>
 	<cmath>
 
-1734003910 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
+1734480752 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\standard.h
 	<string>
 	"entity.h"
 	<iostream>
@@ -35,7 +35,7 @@
 1734010629 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
 	"../Header/entity.h"
 
-1734087291 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
+1734481545 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
 	"../Header/standard.h"
 
 1733272273 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\dummy_file.cpp
@@ -71,7 +71,7 @@
 	"../Header/menu.h"
 	"../Header/standard.h"
 
-1734112188 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\visual_mode.cpp
+1734112684 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\visual_mode.cpp
 	"../Header/visual_mode.h"
 
 1734112587 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\visual_mode.h

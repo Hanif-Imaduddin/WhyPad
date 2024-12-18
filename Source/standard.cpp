@@ -166,3 +166,54 @@ ListOfString extractInput(string input){
     }
     return L;
 }
+void fileTOfile(File F){
+    ofstream file_reader("Files/"+F.name);
+    address_of_file row_temp;
+    address_of_row p;
+    row_temp = F.first;
+    while (row_temp != NIL){
+        p = row_temp->info.first;
+        while (p != NIL){
+            file_reader<<p->info;
+            p = p->next;
+        }
+        file_reader<<'\n';
+        row_temp = row_temp->next;
+    }
+    file_reader.close();
+}
+void quitSave(Folder F){
+    ofstream config("Files/config.txt");
+    address_of_folder p;
+    p = F.first;
+    while (p != NIL){
+        fileTOfile(p->info);
+        config<<p->info.name<<'\n';
+        p = p->next;
+    }
+    config.close();
+}
+
+bool isValidFileName(string file_name,Folder F){
+    ListOfString file_name_ls;
+    address_of_folder p;
+    string input_p_1;
+    file_name_ls = splitString(file_name,'.');
+    if (file_name_ls.length == 2){
+        input_p_1 = getInfo(file_name_ls,1);
+        if(input_p_1 == "py" || input_p_1 == "txt" || input_p_1 == "cpp"){
+            p = F.first;
+            while (p != NIL){
+                if (p->info.name == file_name){
+                    return false;
+                }
+                p = p->next;
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
