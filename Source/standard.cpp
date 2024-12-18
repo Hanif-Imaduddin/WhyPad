@@ -67,6 +67,7 @@ void hold(){
 //Menampilkan judul aplikasi
 void printHeader(){
     system("cls");
+    cout<<string(22,' ')<<"WhyPad"<<endl;
     cout << string(50, '=') << endl;
 }
 
@@ -86,7 +87,6 @@ File read_file(string file_name){
         F.last = F.first;
 
         while( getline(file_reader,row_str)){
-            cout<<row_str<<endl;
             stringToAddress(row_str,start_adr,end_adr);
             F.last->next = createElmFile(createRow());
             F.last->next->info.first = start_adr;
@@ -201,7 +201,7 @@ bool isValidFileName(string file_name,Folder F){
     file_name_ls = splitString(file_name,'.');
     if (file_name_ls.length == 2){
         input_p_1 = getInfo(file_name_ls,1);
-        if(input_p_1 == "py" || input_p_1 == "txt" || input_p_1 == "cpp"){
+        if(input_p_1 == "txt" || input_p_1 == "cpp"){
             p = F.first;
             while (p != NIL){
                 if (p->info.name == file_name){
