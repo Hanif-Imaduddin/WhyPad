@@ -3,5 +3,3 @@ lorem_ipsum.txt
 copy_paste.txt
 undo_redo.txt
 find_and_replace.txt
-file_baru.txt
-Pemodelan Gerak Peluru.py

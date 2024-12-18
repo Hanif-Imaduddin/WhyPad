@@ -157,6 +157,14 @@ int main()
     folder = createFolder("Files");
     load_all_files(folder);
 
+    cout<<endl;
+    cout <<string(32,' ')<<"WhyPad"<< endl;
+    cout<<string(30,' ')<<"Created by:"<<endl;
+    cout<<string(4,' ')<<"Hanif Imaduddin | Naufal Arkan Wahib | Gabriel Edbert Liandrew"<<endl;
+    cout<<string(70,'=');
+    hold();
+    system("cls");
+
     menu_master(folder,"");
     cout<<"(Menu): ";
     getline(cin,input);
