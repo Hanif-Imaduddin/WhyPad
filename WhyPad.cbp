@@ -41,6 +41,7 @@
 		<Unit filename="Header/menu.h" />
 		<Unit filename="Header/normal_mode.h" />
 		<Unit filename="Header/standard.h" />
+		<Unit filename="Header/visual_mode.h" />
 		<Unit filename="Source/command_line_mode.cpp" />
 		<Unit filename="Source/dummy_file.cpp" />
 		<Unit filename="Source/entity.cpp" />
@@ -49,6 +50,7 @@
 		<Unit filename="Source/menu.cpp" />
 		<Unit filename="Source/normal_mode.cpp" />
 		<Unit filename="Source/standard.cpp" />
+		<Unit filename="Source/visual_mode.cpp" />
 		<Unit filename="Testing/test_dummy_file.cpp" />
 		<Unit filename="Testing/test_normal_mode.cpp" />
 		<Extensions />

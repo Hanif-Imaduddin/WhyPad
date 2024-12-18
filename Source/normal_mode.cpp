@@ -34,7 +34,7 @@ void slideUp(Cursor &C,int n){
             i++;
         }
     }
-    C.cell_ptr = C.row_ptr->info.first;
+    C.cell_ptr = NIL;
 }
 void slideDown(Cursor &C,int n){
     //untuk memindahkan kursor ke elemen paling awal bawah
@@ -46,12 +46,12 @@ void slideDown(Cursor &C,int n){
             i++;
         }
     }
-    C.cell_ptr = C.row_ptr->info.first;
+    C.cell_ptr = NIL;
 }
 
 void rowStart(Cursor &C) {
     //memindahkan kursor ke baris paling awal
-    C.cell_ptr = C.row_ptr->info.first;
+    C.cell_ptr = NIL;
 }
 void rowEnd(Cursor &C){
     //memindakhkan kursor ke baris paling akhir
@@ -60,7 +60,7 @@ void rowEnd(Cursor &C){
 
 void fileStart(Cursor &C){
     C.row_ptr = C.file_ptr->info.first;
-    C.cell_ptr = C.row_ptr->info.first;
+    C.cell_ptr = NIL;
 }
 void fileEnd(Cursor &C){
     C.row_ptr = C.file_ptr->info.last;

@@ -5,6 +5,7 @@
 #include "entity.h"
 #include <iostream>
 #include <fstream>
+#define NIL NULL
 
 using namespace std;
 
@@ -15,6 +16,9 @@ void printHeader();
 void load_all_files(Folder &F);
 ListOfString splitString(string str, char delimiter);
 ListOfString extractInput(string input);
+void fileTOfile(File F);
+void quitSave(Folder F);
+bool isValidFileName(string file_name,Folder F);
 
 
 #endif // STANDARD_H_INCLUDED
