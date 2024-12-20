@@ -306,6 +306,15 @@ void find_and_replace(address_of_folder F,ListOfString target_list,StackOfLog &U
             }
             p = p->next;
         }
+        if (target[i] == '\0'){
+            if (end_source == NIL){
+                end_source = start_source;
+            }
+            stringToAddress(replacement,start_target,end_target);
+            replace_elm(F,row_temp,Undo_Stack,start_source,end_source,start_target,end_target);
+            start_source = NIL;
+            end_source = NIL;
+        }
         row_temp = row_temp->next;
     }
 }

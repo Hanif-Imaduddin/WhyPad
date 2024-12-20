@@ -14,7 +14,7 @@
 
 1732276171 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\testing\test_normal_mode.cpp
 
-1734087471 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\normal_mode.cpp
+1734660156 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\normal_mode.cpp
 	"../Header/normal_mode.h"
 
 1734008208 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\normal_mode.h
@@ -22,7 +22,7 @@
 	"standard.h"
 	<iostream>
 
-1734010764 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
+1734608370 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\entity.h
 	<iostream>
 	<cmath>
 
@@ -32,10 +32,10 @@
 	<iostream>
 	<fstream>
 
-1734010629 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
+1734607820 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\entity.cpp
 	"../Header/entity.h"
 
-1734484254 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
+1734662178 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\standard.cpp
 	"../Header/standard.h"
 
 1733272273 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\dummy_file.cpp
@@ -55,7 +55,7 @@
 	"entity.h"
 	"standard.h"
 
-1734111597 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\command_line_mode.cpp
+1734656999 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\command_line_mode.cpp
 	"../Header/command_line_mode.h"
 
 1734071043 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\command_line_mode.h
@@ -71,7 +71,7 @@
 	"../Header/menu.h"
 	"../Header/standard.h"
 
-1734112684 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\visual_mode.cpp
+1734656856 source:d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\source\visual_mode.cpp
 	"../Header/visual_mode.h"
 
 1734112587 d:\hanif imaduddin\kuliah\semester 3\struktur data\tubes\whypad\header\visual_mode.h

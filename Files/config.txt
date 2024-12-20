@@ -3,3 +3,7 @@ lorem_ipsum.txt
 copy_paste.txt
 undo_redo.txt
 find_and_replace.txt
+Pemodelan Grak Jatuh Bebas.py
+procedure_si_kancil.txt
+hello_world.cpp
+hello_world.py

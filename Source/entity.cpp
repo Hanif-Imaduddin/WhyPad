@@ -78,7 +78,7 @@ Clipboard createClipboard(){
 bool isFullClipboard(Clipboard C){
     //mengecek apakah clipboard sudah penuh.
     //mengembalikan true jika penuh
-    return C.height == 10;
+    return C.height == 8;
 }
 bool isEmptyClipboard(Clipboard C){
     //mengecek apakah clipboard masih kosong.
@@ -88,7 +88,7 @@ bool isEmptyClipboard(Clipboard C){
 void pushClipboard(Clipboard &C,string p){
     //prosedur untuk menambahkan clipboard
     C.info[C.top] = p;
-    C.top = (C.top+1)%5;
+    C.top = (C.top+1)-8*floor(double(C.top+1)/double(8));
     if (!isFullClipboard(C)){
         C.height++;
     }
@@ -96,7 +96,7 @@ void pushClipboard(Clipboard &C,string p){
 void popClipboard(Clipboard &C,string &p){
     //untuk melakukan pop pada clipboard
     if (!isEmptyClipboard(C)){
-        C.top = (C.top-1)-10*floor(double(C.top-1)/double(10));
+        C.top = (C.top-1)-8*floor(double(C.top-1)/double(8));
         p = C.info[C.top];
         C.height--;
     }
@@ -105,7 +105,7 @@ void popClipboard(Clipboard &C,string &p){
 string peekClipboard(Clipboard C){
     //untuk melihat nilai paling atas
     int tempTop;
-    tempTop = (C.top-1)-10*floor(double(C.top-1)/double(10));
+    tempTop = (C.top-1)-8*floor(double(C.top-1)/double(8));
     return C.info[tempTop];
 }
 

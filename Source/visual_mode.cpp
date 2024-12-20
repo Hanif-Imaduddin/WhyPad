@@ -71,6 +71,10 @@ void findText(address_of_folder F,Cursor C,string target){
             }
             p = p->next;
         }
+        if (temp != ""){
+            cout<<"\33[94m"<<temp<<"\33[37m";
+            temp = "";
+        }
         cout<<endl;
         row_temp = row_temp->next;
     }
