@@ -1,0 +1,19 @@
+sldkfjsldkgjlgjsdprocedure si_kancil(i/o WHYPAD : string, o nilai : integer)
+kamus
+	indeks_keren_banget : integer
+algoritma
+	if WHYPAD == "Kelompok Keren" then
+		indeks_keren_banget = 10
+		nilai = indeks_keren_banget * 10
+		output("Kelompok ini keren_banget banget")
+		WHYPAD = "Mari kita bantai UAS" 
+	else if WHYPAD == "kelompok Keren Banget" then
+		indeks_keren_banget = 10
+		nilai = indeks_keren_banget * 10
+		output("Kelompok ini bisa menginspirasi bangsa")
+		WHYPAD = "Kami menanti nilai A di mata kuliah ini"
+	else 
+		indeks_keren_banget = 9
+		nilai = indeks_keren_banget * 10
+		WHYPAD = "Plis Bapak Ibu ini aslinya teh udah keren_banget"
+endprocedure

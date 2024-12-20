@@ -57,7 +57,7 @@ Folder createFolder(string folder_name);
 Cursor createCursor(address_of_folder F);
 
 struct Clipboard{ // Stack
-    string info[10];
+    string info[8];
     int height,top;
 };
 

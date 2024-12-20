@@ -201,7 +201,7 @@ bool isValidFileName(string file_name,Folder F){
     file_name_ls = splitString(file_name,'.');
     if (file_name_ls.length == 2){
         input_p_1 = getInfo(file_name_ls,1);
-        if(input_p_1 == "txt" || input_p_1 == "cpp"){
+        if(input_p_1 == "txt" || input_p_1 == "cpp" || input_p_1 == "py"){
             p = F.first;
             while (p != NIL){
                 if (p->info.name == file_name){

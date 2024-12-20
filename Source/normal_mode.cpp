@@ -79,7 +79,7 @@ void copyChar(File &F,Clipboard &CB,int row_idx,int start_idx,int end_idx){
             p = p->next;
             i++;
         }
-        if (end_idx < p->info.length){
+        if (start_idx < p->info.length && end_idx >= start_idx){
            j = 0;
            q = p->info.first;
            while (j < start_idx){
@@ -87,7 +87,7 @@ void copyChar(File &F,Clipboard &CB,int row_idx,int start_idx,int end_idx){
                 j++;
            }
             strElm = "";
-            for (i = start_idx;i <= end_idx;i++){
+            for (i = start_idx;i <= end_idx && i < p->info.length;i++){
                 strElm += q->info;
                 q = q->next;
             }
